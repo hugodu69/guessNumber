@@ -18,7 +18,7 @@
 			<input type="text" id="guess" placeholder="Enter your guess">
 			<div id="boutons">
 				<button onclick="guessNumber()">Guess</button>
-				<button type="reset" id="clear" disabled>Clear</button>
+				<button onclick="guessReset()" id="clear" disabled>Clear</button>
 			</div>
 			<h2>Your last guess was</h2>
 			<p id="result"></p>
@@ -38,6 +38,11 @@
 		if (check !== '') {document.getElementById("clear").disabled = false}
 		else {document.getElementById("clear").disabled = true}
 	}
+	/*la fonction qui reset le Guess*/
+	function guessReset() {
+		document.getElementById("guess").value = '';
+	}
+	/*la fonction appelee au clic du bouton Guess*/
 	function guessNumber() {
 		var number = 65;
 		/*on recupere la valeur du champ de texte*/
