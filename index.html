@@ -4,7 +4,7 @@
 		<meta charset="UTF8">
 		<meta name="viewport" content="width=device-width">
 		<title></title>
-		<link href="./cssskillss.css" type="text.css" rel="stylesheet">
+		<link href="./style.css" type="text.css" rel="stylesheet">
 		<style>
 		</style>
 	</head>
@@ -12,14 +12,46 @@
 
 	<body>
 		<header>
-			<h1>number guesser</h1>
+			<h1><span id="rouge">Number</span> Guesser</h1>
 		</header>
 		<main>
+			<input type="text" id="guess" placeholder="Enter your guess">
+			<div id="boutons">
+				<button onclick="guessNumber()">Guess</button>
+				<button type="reset" disabled>Clear</button>
+			</div>
+			<h2>Your last guess was</h2>
+			<p id="result"></p>
+			<h2 id="feedback"></h2>
+			<button id="reset">Reset</button>
 		</main>
 	</body>
 
 
 	<script>
-		
+	function guessNumber() {
+		var number = 65;
+		var guess = parseInt(document.getElementById("guess").value);
+		if (isNaN(guess)) {
+			document.getElementById("result").innerHTML = "concentre toiiii !!! c'est un nombre ça peut-être ??";
+			document.getElementById("feedback").innerHTML = '';
+		}
+		else if (guess > 100 || guess < 1) {
+			document.getElementById("result").innerHTML = 'ok... reprenons. tu dois deviner un nombre compris entre ZERO ET CENT !!';
+			document.getElementById("feedback").innerHTML = '';
+		}
+		else {
+			document.getElementById("result").innerHTML = guess;
+			if (guess === number) {
+				document.getElementById("feedback").innerHTML = 'BOOM!';
+			}
+			if (guess > number) {
+				document.getElementById("feedback").innerHTML = 'That is too high';
+			}
+			if (guess < number) {
+				document.getElementById("feedback").innerHTML = 'That is too low';
+			}
+		}
+	}
 	</script>
 </html>
