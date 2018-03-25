@@ -18,7 +18,7 @@
 			<input type="text" id="guess" placeholder="Enter your guess">
 			<div id="boutons">
 				<button onclick="guessNumber()">Guess</button>
-				<button type="reset" disabled>Clear</button>
+				<button type="reset" id="clear" disabled>Clear</button>
 			</div>
 			<h2>Your last guess was</h2>
 			<p id="result"></p>
@@ -29,17 +29,30 @@
 
 
 	<script>
+	/*si la div globale est un form le innerHTML ne marche pas, mais
+	s'il n'est pas un form c'est le reset button qui ne marche pas...*/
+	/*on verifie si quelque chose a ete ecrit dans le champ de texte*/
+	document.getElementById("guess").addEventListener("blur", isEmpty);
+	function isEmpty() {
+		var check = document.getElementById("guess").value;
+		if (check !== '') {document.getElementById("clear").disabled = false}
+		else {document.getElementById("clear").disabled = true}
+	}
 	function guessNumber() {
 		var number = 65;
+		/*on recupere la valeur du champ de texte*/
 		var guess = parseInt(document.getElementById("guess").value);
+		/*si la valeur n'est pas un nombre -> message d'erreur*/
 		if (isNaN(guess)) {
 			document.getElementById("result").innerHTML = "concentre toiiii !!! c'est un nombre ça peut-être ??";
 			document.getElementById("feedback").innerHTML = '';
 		}
+		/*si la valeur n'est pas comprise entre 1 et 100 -> message d'erreur*/
 		else if (guess > 100 || guess < 1) {
 			document.getElementById("result").innerHTML = 'ok... reprenons. tu dois deviner un nombre compris entre ZERO ET CENT !!';
 			document.getElementById("feedback").innerHTML = '';
 		}
+		/*si la valeur est un nombre entre 1 et 100*/
 		else {
 			document.getElementById("result").innerHTML = guess;
 			if (guess === number) {
