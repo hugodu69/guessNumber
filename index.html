@@ -15,7 +15,7 @@
 			<h1><span id="rouge">Number</span> Guesser</h1>
 		</header>
 		<main>
-			<input type="text" id="guess" placeholder="Enter your guess">
+			<input type="text" id="guess" placeholder="Enter your guess" tabindex="0">
 			<div id="boutons">
 				<button onclick="guessNumber()">Guess</button>
 				<button onclick="guessClear()" id="clear" disabled>Clear</button>
@@ -31,6 +31,15 @@
 	<script>
 	/*si la div globale est un form le innerHTML ne marche pas, mais
 	s'il n'est pas un form c'est le reset button qui ne marche pas...*/
+	/*creation de la variable a deviner*/
+	var number = Math.floor((Math.random() * 100) + 1);
+	/*on place le curseur automatiquement dans l'input*/
+	document.getElementById("guess").focus();
+	/*pour que la touche entree valide le nombre*/
+	document.getElementById("guess").addEventListener("keypress", enter);
+	function enter(event) {
+		if (event.keyCode === 13) {guessNumber()}
+	}
 	/*on verifie si quelque chose a ete ecrit dans le champ de texte*/
 	document.getElementById("guess").addEventListener("input", isEmpty);
 	function isEmpty() {
@@ -45,7 +54,7 @@
 	}
 	/*la fonction appelee au clic du bouton Guess*/
 	function guessNumber() {
-		var number = 65;
+		console.log(number);
 		/*on recupere la valeur du champ de texte*/
 		var guess = parseInt(document.getElementById("guess").value);
 		/*on lance la fonction qui réinitialize le champs de recherche*/
