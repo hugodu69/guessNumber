@@ -18,12 +18,12 @@
 			<input type="text" id="guess" placeholder="Enter your guess">
 			<div id="boutons">
 				<button onclick="guessNumber()">Guess</button>
-				<button onclick="guessReset()" id="clear" disabled>Clear</button>
+				<button onclick="guessClear()" id="clear" disabled>Clear</button>
 			</div>
 			<h2>Your last guess was</h2>
 			<p id="result"></p>
 			<h2 id="feedback"></h2>
-			<button id="reset">Reset</button>
+			<button onclick="guessReset()" id="reset">Reset</button>
 		</main>
 	</body>
 
@@ -38,8 +38,8 @@
 		if (check !== '') {document.getElementById("clear").disabled = false}
 		else {document.getElementById("clear").disabled = true}
 	}
-	/*la fonction qui reset le Guess*/
-	function guessReset() {
+	/*la fonction qui vide le Guess*/
+	function guessClear() {
 		document.getElementById("guess").value = '';
 	}
 	/*la fonction appelee au clic du bouton Guess*/
@@ -71,5 +71,12 @@
 			}
 		}
 	}
+	/*la fonction qui reset tout le jeu*/
+	function guessReset() {
+		document.getElementById("guess").value = '';
+		document.getElementById("feedback").innerHTML = '';
+		document.getElementById("result").innerHTML = '';
+	}
+	
 	</script>
 </html>
