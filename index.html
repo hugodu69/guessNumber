@@ -23,7 +23,7 @@
 			<h2>Your last guess was</h2>
 			<p id="result"></p>
 			<h2 id="feedback"></h2>
-			<button onclick="guessReset()" id="reset">Reset</button>
+			<button onclick="guessReset()" id="reset" disabled>Reset</button>
 		</main>
 	</body>
 
@@ -32,21 +32,26 @@
 	/*si la div globale est un form le innerHTML ne marche pas, mais
 	s'il n'est pas un form c'est le reset button qui ne marche pas...*/
 	/*on verifie si quelque chose a ete ecrit dans le champ de texte*/
-	document.getElementById("guess").addEventListener("blur", isEmpty);
+	document.getElementById("guess").addEventListener("input", isEmpty);
 	function isEmpty() {
-		var check = document.getElementById("guess").value;
-		if (check !== '') {document.getElementById("clear").disabled = false}
-		else {document.getElementById("clear").disabled = true}
+		var checkGuess = document.getElementById("guess").value;
+		if (checkGuess === '') {document.getElementById("clear").disabled = true;}
+		else {document.getElementById("clear").disabled = false;}
 	}
 	/*la fonction qui vide le Guess*/
 	function guessClear() {
 		document.getElementById("guess").value = '';
+		document.getElementById("clear").disabled = true;
 	}
 	/*la fonction appelee au clic du bouton Guess*/
 	function guessNumber() {
 		var number = 65;
 		/*on recupere la valeur du champ de texte*/
 		var guess = parseInt(document.getElementById("guess").value);
+		/*on lance la fonction qui réinitialize le champs de recherche*/
+		guessClear();
+		/*on débloque le deuxieme bouton reset*/
+		document.getElementById("reset").disabled = false;
 		/*si la valeur n'est pas un nombre -> message d'erreur*/
 		if (isNaN(guess)) {
 			document.getElementById("result").innerHTML = "concentre toiiii !!! c'est un nombre ça peut-être ??";
@@ -76,7 +81,7 @@
 		document.getElementById("guess").value = '';
 		document.getElementById("feedback").innerHTML = '';
 		document.getElementById("result").innerHTML = '';
+		document.getElementById("reset").disabled = true;
 	}
-	
 	</script>
 </html>
