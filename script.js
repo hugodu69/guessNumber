@@ -60,5 +60,8 @@ function guessReset() {
 	document.getElementById("feedback").innerHTML = '';
 	document.getElementById("result").innerHTML = '';
 	document.getElementById("reset").disabled = true;
+	/*on redefinis une valeur a deviner*/
 	number = Math.floor((Math.random() * 100) + 1);
+	/*on replace le curseur automatiquement dans l'input*/
+	document.getElementById("guess").focus();
 }

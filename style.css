@@ -1,17 +1,8 @@
 @font-face {
   font-family: 'Open Sans';
   src: url("OpenSans-Regular-webfont.woff") format("woff"); }
-body header h1 {
-  font-family: sans-serif;
-  font-weight: 300;
-  color: #e6e7e8; }
-  body header h1 span.rouge {
-    font-weight: 700;
-    color: #ed458b; }
-
-p {
-  font-family: sans-serif;
-  font-weight: 300;
-  color: #fff; }
+p, h1, h2, button, span.rouge, input {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300; }
 
 /*# sourceMappingURL=style.css.map */
